@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import todoRouter from "./todorouter";
+import todoRouter from "./todoRouter";
 
 const Loding = <div>로딩중...</div>
 const Main = lazy(() => import("../pages/MainPage"));
