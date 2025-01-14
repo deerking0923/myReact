@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 const Loding = <div>로딩중...</div>
 const Main = lazy(() => import("../pages/MainPage"));
 const  About = lazy(() => import("../pages/AboutPage"));
-
+const Todo = lazy(() => import("../pages/todo/IndexPage"));
 
 const root = createBrowserRouter([
     {
@@ -12,6 +12,9 @@ const root = createBrowserRouter([
     },
     {
         path: "/about", element: <Suspense fallback={Loding}><About></About></Suspense>
+    },
+    {
+        path: "/todo", element: <Suspense fallback={Loding}><Todo></Todo></Suspense>
     }
 ])
 
