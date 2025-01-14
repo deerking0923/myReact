@@ -1,7 +1,17 @@
+import { Link } from "react-router-dom";
+import BasicLayout from "../layouts/BasicLayout";
+
 const MainPage = () => {
-    return(
-        <div>메인입니다</div>
-    );
-}
+  return (
+    <BasicLayout>
+      <div>
+        <h1>Main Page</h1>
+        <div className="flex">
+          <Link to="/about">About으로 이동</Link>
+        </div>
+      </div>
+    </BasicLayout>
+  );
+};
 
 export default MainPage;
