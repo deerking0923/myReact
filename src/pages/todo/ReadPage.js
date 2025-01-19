@@ -1,5 +1,6 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams, createSearchParams } from "react-router-dom";
 import { useCallback } from "react";
+import ReadComponent from "../../components/todo/ReadComponent";
 
 const ReadPage = () => {
   const { tno } = useParams();
@@ -13,12 +14,14 @@ const ReadPage = () => {
   );
 
   return (
-    <div className="text-3xl font-extrabold">
-      todo Read Page Component {tno}
-      <div>
-        <button onClick={() => moveToModify(tno)}>수정</button>
-      </div>
+    <div className="font extrabold w-full bg-white mt-6">
+    <div className="text-2xl">
+        Todo Read Page Component {tno}
     </div>
+    <ReadComponent tno={tno}></ReadComponent>
+</div>
+
+
   );
 };
 
