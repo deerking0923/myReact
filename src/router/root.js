@@ -2,12 +2,15 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import todoRouter from "./todoRouter";
 import memberRouter from "./memberRouter";
+import productsRouter from "./productsRouter";
 
 const Loding = <div>로딩중...</div>
 const Main = lazy(() => import("../pages/MainPage"));
 const  About = lazy(() => import("../pages/AboutPage"));
 const Todo = lazy(() => import("../pages/todo/IndexPage"));
 const TodoList = lazy(() => import("../pages/todo/ListPage"));
+const ProductsIndex = lazy(() => import("../pages/products/IndexPage"));
+
 
 const root = createBrowserRouter([
     {
@@ -19,6 +22,10 @@ const root = createBrowserRouter([
     {
         path: "/todo", element: <Suspense fallback={Loding}><Todo></Todo></Suspense>,
         children: todoRouter()
+    },
+    {
+        path: "/products", element: <Suspense fallback={Loding}><ProductsIndex /></Suspense>,
+        children: productsRouter()
     },
     {
         path: "/member",
