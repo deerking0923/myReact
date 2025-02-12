@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { postAdd } from "../../api/productApi";
 import FetchingModal from "../common/FetchingModal";
 import ResultModal from "../common/ResultModal";
+import useCustomMove from "../../hooks/useCustomMove";
 
 const initState = {
     pname: '',
@@ -15,6 +16,8 @@ const AddComponent = () => {
     const uploadRef = useRef();
     const[fetching, setFetching] = useState(false)
     const[result, setResult] = useState(null);
+
+    const {moveToList} = useCustomMove()
     
     const handleChangeProduct = (e) => {
         product[e.target.name] = e.target.value
@@ -47,6 +50,7 @@ const AddComponent = () => {
 
     const closeModal = () => {
         setResult(null)
+        moveToList({page:1})
     }
     return (
         <div className="border-2 border-sky-200 mt-10 m-2 p-4">
