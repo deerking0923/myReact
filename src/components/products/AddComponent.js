@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { postAdd } from "../../api/productApi";
+import { postAdd } from "../../api/productsApi";
 import FetchingModal from "../common/FetchingModal";
 import ResultModal from "../common/ResultModal";
 import useCustomMove from "../../hooks/useCustomMove";
