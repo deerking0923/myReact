@@ -27,15 +27,20 @@ const ModifyComponent = ({ pno }) => {
         });
     }, [pno]);
 
+    // 수정된 handleChangeProduct: 기존 상태를 유지하며 입력한 필드만 업데이트합니다.
     const handleChangeProduct = (e) => {
-        product[e.target.name] = e.target.value 
-        setProduct({ ...initState });
+        setProduct({
+            ...product,
+            [e.target.name]: e.target.value
+        });
     };
 
     const deleteOldImages = (imageName) => {
         const resultFileNames = product.uploadFileNames.filter(fileName => fileName !== imageName);
-        product.uploadFileNames= resultFileNames
-        setProduct({ ...product});
+        setProduct({
+            ...product,
+            uploadFileNames: resultFileNames
+        });
     };
 
     const handleClickModify = () => {
@@ -60,7 +65,7 @@ const ModifyComponent = ({ pno }) => {
 
     return (
         <div className="border-2 border-sky-200 mt-10 m-2 p-4">
-            {fetching ? <FetchingModal /> : <></>}
+            {fetching ? <FetchingModal /> : null}
 
             <div className="flex justify-center">
                 <div className="relative mb-4 flex w-full flex-wrap items-stretch">
@@ -122,8 +127,8 @@ const ModifyComponent = ({ pno }) => {
                     <input
                         ref={uploadRef}
                         className="w-4/5 p-6 rounded-r border border-solid border-neutral-300 shadow-md"
-                        type={'file'}
-                        multiple={true}
+                        type="file"
+                        multiple
                     />
                 </div>
             </div>
