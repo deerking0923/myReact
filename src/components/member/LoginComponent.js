@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { login } from "../../slices/loginSlice";
-import { useDispatch } from "react-redux";
+
+import useCustomLogin from "../../hooks/UseCustomLogin";
 
 const initState = {
     email:'',
@@ -11,7 +11,7 @@ const LoginComponent = () => {
 
     const [loginParam, setLoginParam] = useState({...initState})
 
-    const dispatch = useDispatch()
+const {doLogin, moveToPath} = useCustomLogin()
 
     const handleChange = (e) => {
         loginParam[e.target.name] = e.target.value
@@ -20,7 +20,22 @@ const LoginComponent = () => {
     }
 
     const handleClickLogin = (e) => {
-        dispatch(login(loginParam))
+        //dispatch(login(loginParam))
+        //dispatch(loginPostAsync(loginParam))
+        doLogin
+        .unwrap()
+        .then(data => {
+            //console.log("after unwrap.....")
+            console.log(data)
+            if(data.error){
+                alert("이메일과 패스워드를 다시 입력하세요")
+            }else{
+                alert("로그인 성공")
+                moveToPath('/')
+            }
+        }
+
+        )
     }
 
 
