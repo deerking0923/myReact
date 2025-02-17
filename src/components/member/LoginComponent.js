@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { login } from "../../slices/loginSlice";
+import { useDispatch } from "react-redux";
 
 const initState = {
     email:'',
@@ -9,11 +11,18 @@ const LoginComponent = () => {
 
     const [loginParam, setLoginParam] = useState({...initState})
 
+    const dispatch = useDispatch()
+
     const handleChange = (e) => {
         loginParam[e.target.name] = e.target.value
 
         setLoginParam({...loginParam})
     }
+
+    const handleClickLogin = (e) => {
+        dispatch(login(loginParam))
+    }
+
 
     return(
         <div className="border-2 border-sky-200 mt-10 m-2 p-4">
@@ -46,7 +55,8 @@ const LoginComponent = () => {
             <div className="flex justify-center">
                 <div className="relative mb-4 flex w-full justify-center">
                     <div className="w-2/5 p-6 flex justify-center font-bold">
-                        <button className="rounded p-4 w-36 bg-blue-500 text-xl text-white">Login</button>
+                        <button className="rounded p-4 w-36 bg-blue-500 text-xl text-white"
+                        onClick={handleClickLogin}>Login</button>
                     </div>
                 </div>
             </div>
