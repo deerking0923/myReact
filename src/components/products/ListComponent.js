@@ -3,6 +3,7 @@ import { getList } from "../../api/productsApi";
 import useCustomMove from "../../hooks/useCustomMove";
 import FetchingModal from "../common/FetchingModal";
 import { API_SERVER_HOST } from "../../api/todoApi";
+import useCustomLogin from "../../hooks/UseCustomLogin";
 
 const host = API_SERVER_HOST;
 
@@ -22,6 +23,7 @@ const initState = {
 const ListComponent = () => {
   const { page, size, refresh, moveToList, moveToRead } = useCustomMove();
 
+  const {exceptionHandle} = useCustomLogin()
   const [serverData, setServerData] = useState(initState);
   const [fetching, setFetching] = useState(false);
 
@@ -31,7 +33,7 @@ const ListComponent = () => {
       console.log(data);
       setServerData(data);
       setFetching(false);
-    });
+    }).catch(err=> exceptionHandle);
   }, [page, size, refresh]);
 
   return (
